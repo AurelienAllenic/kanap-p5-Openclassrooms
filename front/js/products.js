@@ -60,11 +60,23 @@ const addProduct = () => {
     let selectedColor = document.getElementById("colors").value;
     let selectedQuantity = document.getElementById("quantity").value;
 
+    ///////////////////////////////////////////////////////////////////////
+
+    // On crèe une variable qui va contenir toutes les infos et le prix
+
+    productDataWithoutPrice = productData;
+    delete productDataWithoutPrice.price;
+    /////////////////////////////////////////////////////////////////
+
     // on ajoute les key 'color' et quantity' dans 'productData'
-    const productDataWithQuantityAndColor = Object.assign({}, productData, {
-      color: selectedColor,
-      quantity: selectedQuantity,
-    });
+    const productDataWithQuantityAndColor = Object.assign(
+      {},
+      productDataWithoutPrice,
+      {
+        color: selectedColor,
+        quantity: selectedQuantity,
+      }
+    );
     console.log("juste en dessous : productDataWithQuantityAndColor");
     console.log(productDataWithQuantityAndColor);
     console.log("juste en dessous : productsInStorage");

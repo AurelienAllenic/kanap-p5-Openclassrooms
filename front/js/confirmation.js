@@ -34,5 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((result) => {
       console.log("resultat", result);
       document.getElementById("orderId").innerHTML = result.orderId;
+      localStorage.clear();
     });
 });

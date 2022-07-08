@@ -1,13 +1,39 @@
 //On commence par afficher les éléments du localStorage
 let multipleProducts = [];
+let productData = [];
 let cart = JSON.parse(localStorage.getItem("products"));
 
-console.log(cart);
+/////// FONCTION POUR RECUPERER LES PRODUITS ////////////////
+const getProducts = async () => {
+  await fetch(`http://localhost:3000/api/products/`)
+    .then((res) => res.json())
+    .then((promise) => {
+      productData = promise;
+      console.log(promise);
+      console.log(productData.price);
+    });
+};
+
+///////// FONCTION QUI CALCULE LE PRIX AVEC LA QUANTITE /////////////////
+
+const PriceMath = (id, quantity) => {
+  let filteredRecord = productData.filter(function (item) {
+    return item._id == id;
+  });
+  console.log("données reçues : " + id, quantity, filteredRecord);
+  return filteredRecord[0].price * quantity;
+};
+
 //Fonction permettant d'afficher les produits présents dans le localStorage
 const displayCart = async () => {
   console.log("test");
+
   if (cart) {
+    await getProducts();
+    console.log(productData);
+    console.log(cart);
     await cart;
+    /*product.price * product.quantity.toString().replace(/00/, "")*/
     console.log(cart);
     cart__items.innerHTML = cart.map(
       (product) => `<article class="cart__item" data-id="${
@@ -21,7 +47,7 @@ const displayCart = async () => {
         <h2>${product.name}</h2>
         <p>${product.color}</p>
         
- <p>${product.price * product.quantity.toString().replace(/00/, "")}€</p>
+ <p>${PriceMath(product._id, product.quantity)}€</p>
       </div>
       <div class="cart__item__content__settings">
         <div class="cart__item__content__settings__quantity">
@@ -40,7 +66,7 @@ const displayCart = async () => {
   </article>
 </section>`
     );
-    // Fonction permettant de supprimer un prduit
+    // Fonction permettant de supprimer un produit
     removeProduct();
     // Fonction permettant de modifier la quantité d'un produit
     addQuantity();
@@ -53,13 +79,17 @@ const displayCart = async () => {
 // Fonction permettant d'afficher le prix total du panier de manière dynamique
 const displayTotalPrice = async () => {
   if (cart) {
+    await getProducts();
     await cart;
     console.log(cart);
     // Calcul du prix total
     let totalPrice = 0;
+
     cart.forEach((productInCart) => {
       console.log(productInCart);
-      totalPrice += parseInt(productInCart.quantity) * productInCart.price;
+      totalPrice +=
+        parseInt(productInCart.quantity) *
+        PriceMath(productInCart._id, parseInt(productInCart.quantity));
     });
     //Insertion du HTML du prix total après que l'on ait affiché les produits du panier
     document.getElementById("cartAndFormContainer").insertAdjacentHTML(
