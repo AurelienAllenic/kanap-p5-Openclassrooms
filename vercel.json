@@ -7,19 +7,46 @@
       },
       {
         "src": "/images/(.*)",
-        "dest": "back/images/$1"
+        "dest": "/back/images/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
-        "src": "/(.*\\.(html|css|js|png|jpg|jpeg|svg))",
-        "dest": "front/$1"
+        "src": "/html/(.*)",
+        "dest": "/front/html/$1"
+      },
+      {
+        "src": "/css/(.*)",
+        "dest": "/front/css/$1"
+      },
+      {
+        "src": "/js/(.*)",
+        "dest": "/front/js/$1"
+      },
+      {
+        "src": "/product.html",
+        "dest": "/front/html/product.html"
+      },
+      {
+        "src": "/cart.html",
+        "dest": "/front/html/cart.html"
+      },
+      {
+        "src": "/confirmation.html",
+        "dest": "/front/html/confirmation.html"
+      },
+      {
+        "src": "/index.html",
+        "dest": "/front/html/index.html"
       },
       {
         "src": "/",
-        "dest": "front/html/index.html"
+        "dest": "/front/html/index.html"
       },
       {
-        "src": "/(.*)",
-        "dest": "front/html/$1"
+        "src": "/(.*\\.(html|css|js|png|jpg|jpeg|svg))",
+        "dest": "/front/$1"
       }
     ]
   }
