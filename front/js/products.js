@@ -9,7 +9,7 @@ let productData = [];
  * Les données du produit iront dans la variable (tableau) productData
  */
 const fetchProduct = async () => {
-  await fetch(`http://localhost:3000/api/products/${product}`)
+  await fetch(`${API_BASE_URL}/api/products/${product}`)
     .then((res) => res.json())
     .then((promise) => {
       productData = promise;

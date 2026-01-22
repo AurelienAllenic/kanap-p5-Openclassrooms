@@ -5,7 +5,7 @@ let cart = JSON.parse(localStorage.getItem("products"));
 
 /////// FONCTION POUR RECUPERER LES PRODUITS ////////////////
 const getProducts = async () => {
-  await fetch(`http://localhost:3000/api/products/`)
+  await fetch(`${API_BASE_URL}/api/products/`)
     .then((res) => res.json())
     .then((promise) => {
       productData = promise;

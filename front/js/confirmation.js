@@ -14,7 +14,7 @@ let payLoad = { contact: user, products: cart };
 console.log(payLoad);
 // Fetch des données user vers /order avec une requête POST et ajout de celles-ci dans payLoad
 const submitOrder = async () => {
-  return await fetch(`http://localhost:3000/api/products/order`, {
+  return await fetch(`${API_BASE_URL}/api/products/order`, {
     method: "POST",
     headers: {
       Accept: "application/json",

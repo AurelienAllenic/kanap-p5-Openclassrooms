@@ -1,7 +1,7 @@
 let Products = [];
 // Fonction permettant d'afficher les produits dans la page d'acceuil
 const productDisplay = async () => {
-  fetch("http://localhost:3000/api/products") // Récupérer les données avec fetch
+  fetch(`${API_BASE_URL}/api/products`) // Récupérer les données avec fetch
     .then((res) => res.json())
     .then((promise) => {
       Products = promise;
