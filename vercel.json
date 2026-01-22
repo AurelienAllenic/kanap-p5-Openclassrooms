@@ -6,6 +6,27 @@
         "dest": "/api/index.js"
       },
       {
+        "src": "/images/icons/(.*)",
+        "dest": "/front/images/icons/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/images/logo.png",
+        "dest": "/front/images/logo.png",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/images/banniere.png",
+        "dest": "/front/images/banniere.png",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
         "src": "/images/(.*)",
         "dest": "/back/images/$1",
         "headers": {

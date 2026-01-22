@@ -5,6 +5,12 @@
 
     <meta charset="utf-8" />
     <meta name="description" content="Plateforme incroyable de e-commerce" />
+    <script>
+      // Ajoute une balise base pour Vercel (production uniquement)
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.protocol.includes('file')) {
+        document.write('<base href="/">');
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
